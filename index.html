@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>რესტორანი „ატენი"</title>
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="icon-192.png">
+<link rel="shortcut icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Noto+Serif+Georgian:wght@300;400;500&family=Cinzel:wght@400;500;600&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/bpg-irubaqidze/css/bpg-irubaqidze.min.css">
+<style>
+:root {
+  --forest:    #2d4a2d;
+  --forest-dk: #1a2e1a;
+  --forest-lt: #3d6b3d;
+  --sage:      #7a9e7a;
+  --sage-lt:   #a8c5a8;
+  --gold:      #c9a84c;
+  --gold-lt:   #e4c97a;
+  --gold-pale: #f5e8c0;
+  --cream:     #faf6ee;
+  --parchment: #f0e8d5;
+  --warm-white:#fffdf8;
+  --text-dk:   #1c1c14;
+  --text-md:   #3d3520;
+  --text-lt:   #6b5f45;
+  --border:    rgba(201,168,76,0.25);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--cream);color:var(--text-dk);font-family:'Lora','Noto Serif Georgian',serif;min-height:100vh;overflow-x:hidden;}
+html[lang="ka"] body,
+html[lang="ka"] .hero-sub,
+html[lang="ka"] .hero-tag,
+html[lang="ka"] .hero-title,
+html[lang="ka"] .hero-title em,
+html[lang="ka"] .sec-title,
+html[lang="ka"] .sec-sub,
+html[lang="ka"] .item-geo,
+html[lang="ka"] .tab-btn,
+html[lang="ka"] .ft-geo,
+html[lang="ka"] .ft-en{
+  font-family:'BPG Irubaqidze','Noto Serif Georgian','Playfair Display',serif;
+}
+
+/* HERO */
+.hero{background:var(--forest-dk);position:relative;overflow:hidden;min-height:300px;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.hero-bg{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(to bottom, rgba(15,26,15,.65), rgba(15,26,15,.5)),
+    radial-gradient(ellipse 80% 60% at 50% 100%,rgba(78,107,78,.35) 0%,transparent 70%),
+    url("file:///C:/Users/Tkss/.cursor/projects/c-Users-Tkss-Desktop-Restaurant/assets/c__Users_Tkss_AppData_Roaming_Cursor_User_workspaceStorage_28bc10691be2db3739a95f1cb45bd330_images_image-a3bee73c-e8dc-4841-8f94-0722e1c0269e.png");
+  background-size:cover, auto, cover;
+  background-position:center, center, center 58%;
+  background-repeat:no-repeat, no-repeat, no-repeat;
+  image-rendering:auto;
+  transform:translateZ(0);
+  backface-visibility:hidden;
+}
+.corner{position:absolute;width:180px;opacity:.15;pointer-events:none;}
+.corner.tl{top:0;left:0;}.corner.tr{top:0;right:0;transform:scaleX(-1);}.corner.bl{bottom:0;left:0;transform:scaleY(-1);}.corner.br{bottom:0;right:0;transform:rotate(180deg);}
+.hero-inner{position:relative;z-index:2;text-align:center;padding:56px 24px 48px;}
+.hero-sub{font-family:'Noto Serif Georgian',serif;font-size:clamp(13px,2.4vw,17px);font-weight:300;line-height:1.45;color:var(--sage-lt);letter-spacing:3px;margin-bottom:14px;opacity:.85;animation:fdDn .8s ease both;}
+.hero-title{font-family:'Cinzel',serif;font-size:clamp(36px,8vw,68px);font-weight:500;color:var(--gold-lt);letter-spacing:8px;line-height:1;animation:fdDn .8s .15s ease both;}
+.hero-title em{font-family:'Playfair Display',serif;font-style:italic;color:var(--cream);font-size:.55em;display:block;letter-spacing:3px;margin-top:10px;}
+.divider{display:flex;align-items:center;justify-content:center;gap:14px;margin:22px auto;width:min(340px,80vw);animation:fdDn .8s .3s ease both;}
+.divider-line{flex:1;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);}
+.divider-gem{width:7px;height:7px;background:var(--gold);transform:rotate(45deg);}
+.hero-tag{font-family:'Lora',serif;font-style:italic;font-size:clamp(13px,2.4vw,17px);line-height:1.45;color:var(--sage-lt);letter-spacing:2px;animation:fdDn .8s .45s ease both;}
+html[lang="ka"] .hero-tag{font-style:normal;letter-spacing:.3px;}
+html[lang="ka"] .hero-sub,
+html[lang="ka"] .hero-tag{
+  color:#f6e7bc;
+  text-shadow:0 1px 2px rgba(0,0,0,.45);
+}
+@keyframes fdDn{from{opacity:0;transform:translateY(-14px);}to{opacity:1;transform:translateY(0);}}
+
+/* CONTROLS */
+.lang-toggle{display:flex;gap:6px;border:none;border-radius:999px;overflow:visible;flex-shrink:0;}
+.lang-btn{padding:6px 8px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:1px;color:#f0f6f2;background:#2F5A44;border:none;cursor:pointer;transition:all .25s;min-width:38px;display:flex;align-items:center;justify-content:center;border-radius:999px;backdrop-filter:blur(2px);}
+.lang-btn:hover{background:#3B6A53;}
+.lang-btn.active{background:#244837;color:#fffdf8;font-weight:600;}
+.lang-btn .flag{width:20px;height:14px;display:block;border-radius:3px;box-shadow:none;object-fit:cover;image-rendering:auto;}
+.lang-fixed{position:absolute;top:18px;right:18px;left:auto;bottom:auto;z-index:4;background:rgba(15,26,15,.35);padding:6px 8px;border-radius:999px;border:none;backdrop-filter:blur(4px);}
+
+/* TABS */
+.tabs-wrap{background:var(--parchment);border-bottom:1px solid var(--border);overflow-x:hidden;scrollbar-width:none;transition:opacity .3s;}
+.tabs-wrap::-webkit-scrollbar{display:none;}
+.tabs{display:flex;flex-wrap:wrap;width:100%;padding:6px 16px;align-items:center;justify-content:center;row-gap:2px;}
+.tab-btn{padding:14px 16px;font-family:'Cinzel',serif;font-size:14px;letter-spacing:1.3px;color:var(--text-lt);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;transition:all .25s;white-space:normal;text-align:center;display:flex;align-items:center;gap:8px;}
+.tab-btn .ti{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;color:var(--gold);font-size:14px;line-height:1;opacity:.95;}
+.tab-btn:hover{color:var(--forest);}
+.tab-btn.active{color:var(--forest-dk);border-bottom-color:var(--gold);font-weight:600;}
+.contact-btn{margin-left:8px;padding:12px 18px;font-family:'Cinzel',serif;font-size:13px;letter-spacing:1px;color:var(--forest-dk);background:rgba(201,168,76,.22);border:1px solid rgba(201,168,76,.5);border-radius:4px;transition:all .25s;white-space:nowrap;cursor:pointer;}
+.contact-btn:hover{background:rgba(201,168,76,.35);color:#132413;}
+html[lang="ka"] .contact-btn{font-family:'BPG Irubaqidze','Noto Serif Georgian','Playfair Display',serif;font-size:14px;letter-spacing:.3px;}
+.contact-cover{position:absolute;right:18px;bottom:14px;z-index:4;margin-left:0;background:rgba(201,168,76,.85);}
+
+/* MAIN */
+.main{max-width:860px;margin:0 auto;padding:0 24px 80px;}
+
+/* SECTION */
+.menu-section{display:none;}
+.menu-section.active{display:block;}
+.sec-hd{padding:40px 0 18px;display:flex;align-items:center;justify-content:center;gap:18px;text-align:center;width:fit-content;max-width:100%;margin:0 auto;}
+.sec-icon{width:48px;height:48px;background:linear-gradient(145deg,#2d4a2d,#1a2e1a);border:1px solid rgba(201,168,76,.5);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold-lt);flex-shrink:0;box-shadow:0 4px 14px rgba(45,74,45,.2);}
+.sec-icon .sec-icon-svg{width:23px;height:23px;display:block;flex-shrink:0;}
+.sec-title{font-family:'Cinzel',serif;font-size:clamp(24px,4.8vw,38px);color:var(--forest-dk);letter-spacing:3px;}
+.sec-sub{font-family:'Noto Serif Georgian',serif;font-size:15px;color:var(--text-lt);margin-top:4px;font-style:italic;}
+.sec-rule{height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);margin:0 auto 22px;max-width:520px;}
+
+html[lang="ka"] .tab-btn{
+  font-size:14px;
+  letter-spacing:.4px;
+  font-weight:500;
+}
+html[lang="ka"] .sec-title{
+  font-size:clamp(26px,5.1vw,42px);
+  letter-spacing:.6px;
+  font-weight:500;
+  color:#233b23;
+  text-shadow:0 1px 0 rgba(255,255,255,.45);
+}
+html[lang="ka"] .sec-sub{
+  font-size:16px;
+  letter-spacing:.2px;
+}
+
+/* ITEMS */
+.menu-item{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:17px 20px;background:var(--warm-white);border:1px solid transparent;border-bottom-color:rgba(160,140,100,.12);transition:all .2s;position:relative;overflow:hidden;animation:itIn .35s ease both;}
+.menu-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--gold);transform:scaleY(0);transition:transform .22s;transform-origin:bottom;}
+.menu-item:hover{background:#fff;border-color:rgba(201,168,76,.2);box-shadow:0 2px 12px rgba(45,74,45,.07);}
+.menu-item:hover::before{transform:scaleY(1);}
+@keyframes itIn{from{opacity:0;transform:translateX(-6px);}to{opacity:1;transform:translateX(0);}}
+.item-text{flex:1;}
+.item-geo{font-family:'Noto Serif Georgian',serif;font-size:18px;font-weight:500;color:var(--text-dk);line-height:1.55;}
+.item-en{font-family:'Lora',serif;font-style:italic;font-size:15px;color:var(--text-lt);margin-top:4px;line-height:1.45;}
+.lang-geo .item-en{display:none;}
+.lang-en .item-geo{display:none;}
+.item-pr{text-align:right;flex-shrink:0;padding-top:2px;display:flex;align-items:center;justify-content:flex-end;gap:8px;}
+.photo-btn{width:26px;height:26px;border-radius:4px;border:1px solid rgba(201,168,76,.55);background:rgba(201,168,76,.16);color:var(--forest);cursor:pointer;padding:0;display:inline-flex;align-items:center;justify-content:center;transition:all .2s;}
+.photo-btn:hover{background:rgba(201,168,76,.26);color:var(--forest-dk);transform:translateY(-1px);}
+.photo-btn svg{width:13px;height:13px;display:block;}
+.lang-geo .photo-btn{display:none;}
+.price{font-family:'Playfair Display',serif;font-size:20px;font-weight:500;color:var(--forest);line-height:1;}
+.cur{font-size:11px;color:var(--text-lt);font-family:'Lora',serif;margin-left:1px;}
+.item-hidden{display:none!important;}
+
+/* NO RESULTS */
+.no-results{text-align:center;padding:56px 20px;display:none;}
+.no-results.show{display:block;}
+.no-results-icon{font-size:38px;margin-bottom:10px;}
+.no-results p{font-family:'Lora',serif;font-style:italic;color:var(--text-lt);font-size:15px;}
+
+/* FOOTER */
+footer{background:var(--forest-dk);text-align:center;padding:30px 20px;margin-top:40px;}
+.ft-geo{font-family:'Noto Serif Georgian',serif;font-size:17px;color:var(--gold-lt);margin-bottom:6px;}
+.ft-rule{width:50px;height:1px;background:var(--gold);margin:14px auto;opacity:.4;}
+.ft-en{font-family:'Lora',serif;font-style:italic;font-size:clamp(13px,1.8vw,15px);line-height:1.55;color:var(--sage);letter-spacing:2px;}
+.contact-grid{max-width:560px;margin:18px auto 4px;display:grid;grid-template-columns:1fr;gap:10px;}
+.contact-item{display:flex;align-items:center;justify-content:space-between;gap:10px;background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.2);padding:10px 12px;border-radius:4px;}
+.contact-label{font-size:13px;color:var(--sage-lt);letter-spacing:1px;font-weight:700;display:flex;align-items:center;gap:9px;}
+.contact-icon{width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(201,168,76,.18);color:var(--gold-lt);border:1px solid rgba(201,168,76,.35);}
+.contact-icon svg{width:12px;height:12px;display:block;}
+.contact-link{color:var(--gold-lt);text-decoration:none;font-size:15px;font-weight:500;}
+.contact-link:hover{text-decoration:underline;}
+.contact-modal{position:fixed;inset:0;background:rgba(10,16,10,.75);display:none;align-items:center;justify-content:center;z-index:1300;padding:24px;}
+.contact-modal.show{display:flex;}
+.contact-modal-card{width:min(92vw,560px);background:var(--warm-white);border:1px solid rgba(201,168,76,.35);border-radius:8px;overflow:hidden;box-shadow:0 10px 38px rgba(0,0,0,.25);}
+.contact-modal-head{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:var(--forest-dk);color:var(--gold-lt);}
+.contact-modal-title{font-size:16px;letter-spacing:.4px;}
+.contact-modal-close{background:transparent;border:none;color:var(--gold-lt);font-size:20px;line-height:1;cursor:pointer;}
+.contact-modal-body{padding:14px;}
+.dish-modal{position:fixed;inset:0;background:rgba(10,16,10,.75);display:none;align-items:center;justify-content:center;z-index:1200;padding:24px;}
+.dish-modal.show{display:flex;}
+.dish-modal-card{width:min(92vw,520px);background:var(--warm-white);border:1px solid rgba(201,168,76,.35);border-radius:8px;overflow:hidden;box-shadow:0 10px 38px rgba(0,0,0,.25);}
+.dish-modal-head{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:var(--forest-dk);color:var(--gold-lt);}
+.dish-modal-title{font-size:14px;letter-spacing:.4px;}
+.dish-modal-close{background:transparent;border:none;color:var(--gold-lt);font-size:20px;line-height:1;cursor:pointer;}
+.dish-modal-image-wrap{background:#e8e1d0;min-height:240px;display:flex;align-items:center;justify-content:center;}
+.dish-modal-image{display:block;max-width:100%;max-height:65vh;object-fit:contain;}
+.dish-modal-empty{padding:28px 18px;color:var(--text-lt);font-style:italic;text-align:center;}
+
+@media(max-width:1100px){.tabs{justify-content:center;}}
+@media(max-width:500px){.corner{width:110px;}.tab-btn{font-size:12px;padding:12px 10px;letter-spacing:.4px;gap:5px;}.tab-btn .ti{width:14px;height:14px;font-size:12px;}.sec-title{font-size:clamp(22px,6vw,30px);}.sec-sub{font-size:14px;}.item-geo{font-size:17px;}.item-en{font-size:14px;}.price{font-size:17px;}.lang-fixed{top:8px;right:8px;}.main{padding:0 14px 70px;}.sec-hd{gap:12px;}.contact-cover{right:10px;bottom:10px;}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="lang-toggle lang-fixed">
+    <button class="lang-btn active" id="btnKaTab" onclick="setLang('ka')" aria-label="Georgian language"><img class="flag" src="https://flagcdn.com/ge.svg" alt="Georgian flag" decoding="async"></button>
+    <button class="lang-btn" id="btnEnTab" onclick="setLang('en')" aria-label="English language"><img class="flag" src="https://flagcdn.com/gb.svg" alt="English flag" decoding="async"></button>
+  </div>
+  <!-- decorative botanical corners via SVG -->
+  <svg class="corner tl" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M8 8 Q55 8 55 55 Q55 8 102 8" stroke="#c9a84c" stroke-width="1.2" fill="none"/>
+    <path d="M8 8 Q8 55 55 55 Q8 55 8 102" stroke="#c9a84c" stroke-width="1.2" fill="none"/>
+    <circle cx="55" cy="55" r="3" fill="#c9a84c" opacity=".5"/>
+    <path d="M25 8 C28 22 18 32 8 28" stroke="#7a9e7a" stroke-width=".9" fill="none"/>
+    <ellipse cx="16" cy="18" rx="7" ry="4" stroke="#7a9e7a" stroke-width=".7" fill="none" opacity=".5" transform="rotate(-40 16 18)"/>
+    <path d="M45 8 C50 22 38 34 26 28" stroke="#7a9e7a" stroke-width=".8" fill="none" opacity=".6"/>
+    <path d="M8 45 C22 50 34 38 28 26" stroke="#7a9e7a" stroke-width=".8" fill="none" opacity=".6"/>
+    <path d="M65 8 C70 28 58 46 42 50" stroke="#c9a84c" stroke-width=".7" fill="none" opacity=".4"/>
+    <path d="M8 65 C28 70 46 58 50 42" stroke="#c9a84c" stroke-width=".7" fill="none" opacity=".4"/>
+  </svg>
+  <svg class="corner tr" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M8 8 Q55 8 55 55 Q55 8 102 8" stroke="#c9a84c" stroke-width="1.2" fill="none"/>
+    <path d="M8 8 Q8 55 55 55 Q8 55 8 102" stroke="#c9a84c" stroke-width="1.2" fill="none"/>
+    <circle cx="55" cy="55" r="3" fill="#c9a84c" opacity=".5"/>
+    <path d="M25 8 C28 22 18 32 8 28" stroke="#7a9e7a" stroke-width=".9" fill="none"/>
+    <ellipse cx="16" cy="18" rx="7" ry="4" stroke="#7a9e7a" stroke-width=".7" fill="none" opacity=".5" transform="rotate(-40 16 18)"/>
+    <path d="M45 8 C50 22 38 34 26 28" stroke="#7a9e7a" stroke-width=".8" fill="none" opacity=".6"/>
+    <path d="M65 8 C70 28 58 46 42 50" stroke="#c9a84c" stroke-width=".7" fill="none" opacity=".4"/>
+  </svg>
+  <svg class="corner bl" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M8 8 Q55 8 55 55 Q55 8 102 8" stroke="#c9a84c" stroke-width="1.2" fill="none"/>
+    <path d="M8 8 Q8 55 55 55 Q8 55 8 102" stroke="#c9a84c" stroke-width="1.2" fill="none"/>
+    <circle cx="55" cy="55" r="3" fill="#c9a84c" opacity=".5"/>
+    <path d="M45 8 C50 22 38 34 26 28" stroke="#7a9e7a" stroke-width=".8" fill="none" opacity=".6"/>
+    <path d="M65 8 C70 28 58 46 42 50" stroke="#c9a84c" stroke-width=".7" fill="none" opacity=".4"/>
+  </svg>
+  <svg class="corner br" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M8 8 Q55 8 55 55 Q55 8 102 8" stroke="#c9a84c" stroke-width="1.2" fill="none"/>
+    <path d="M8 8 Q8 55 55 55 Q8 55 8 102" stroke="#c9a84c" stroke-width="1.2" fill="none"/>
+    <circle cx="55" cy="55" r="3" fill="#c9a84c" opacity=".5"/>
+    <path d="M45 8 C50 22 38 34 26 28" stroke="#7a9e7a" stroke-width=".8" fill="none" opacity=".6"/>
+    <path d="M65 8 C70 28 58 46 42 50" stroke="#c9a84c" stroke-width=".7" fill="none" opacity=".4"/>
+  </svg>
+
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <div class="hero-sub" id="heroSub">ქართული სამზარეულო</div>
+    <h1 class="hero-title"><span id="heroTitleMain">რესტორანი</span><em id="heroTitleEm">ატენი</em></h1>
+    <div class="divider"><div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div></div>
+    <div class="hero-tag" id="heroTag">Traditional flavours · Heartfelt hospitality</div>
+  </div>
+  <button class="contact-btn contact-cover" id="btnContact" type="button" onclick="openContactModal()">Contact</button>
+</header>
+
+<div class="tabs-wrap" id="tabsWrap">
+  <div class="tabs">
+    <button class="tab-btn active" id="tab-salads" onclick="showSection('salads',this)"><span class="ti">✦</span>Salads & Starters</button>
+    <button class="tab-btn" id="tab-cheese" onclick="showSection('cheese',this)"><span class="ti">✦</span>Cheese & Bread</button>
+    <button class="tab-btn" id="tab-mains" onclick="showSection('mains',this)"><span class="ti">✦</span>Main Dishes</button>
+    <button class="tab-btn" id="tab-grill" onclick="showSection('grill',this)"><span class="ti">✦</span>Grill & Fish</button>
+    <button class="tab-btn" id="tab-sauces" onclick="showSection('sauces',this)"><span class="ti">✦</span>Sauces</button>
+    <button class="tab-btn" id="tab-drinks" onclick="showSection('drinks',this)"><span class="ti">✦</span>Drinks</button>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- SALADS -->
+  <section class="menu-section active" id="salads">
+    <div class="sec-hd"><div class="sec-icon" aria-hidden="true"><svg class="sec-icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 14.5c0 4.3 3.6 7.5 8 7.5s8-3.2 8-7.5H4z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/><path d="M9 13c0-2.6 1.9-4.9 3-6 1.1 1.1 3 3.4 3 6M12 8V5.5" stroke="currentColor" stroke-width="1.65" stroke-linecap="round"/></svg></div><div><div class="sec-title" id="title-salads">SALADS & STARTERS</div></div></div>
+    <div class="sec-rule"></div>
+    <div id="g-salads">
+      <div class="menu-item lang-ka" data-geo="კიტრი-პომიდვრის სალათი" data-en="Cucumber and tomato salad"><div class="item-text"><div class="item-geo">კიტრი-პომიდვრის სალათი</div><div class="item-en">Cucumber and tomato salad</div></div><div class="item-pr"><span class="price">7</span><span class="cur">₾</span></div></div>
+      <div class="menu-item lang-ka" data-geo="კიტრი-პომიდორი ნიგვზით" data-en="Cucumber and tomato with walnut"><div class="item-text"><div class="item-geo">კიტრი-პომიდორი ნიგვზით</div><div class="item-en">Cucumber and tomato with walnut</div></div><div class="item-pr"><span class="price">10</span><span class="cur">₾</span></div></div>
+      <div class="menu-item lang-ka" data-geo="ფხლის ასორტი" data-en="Pkhali assortment"><div class="item-text"><div class="item-geo">ფხლის ასორტი</div><div class="item-en">Pkhali assortment</div></div><div class="item-pr"><span class="price">14</span><span class="cur">₾</span></div></div>
+      <div class="menu-item lang-ka" data-geo="ბადრიჯანი ნიგვზით" data-en="Eggplant with walnut"><div class="item-text"><div class="item-geo">ბადრიჯანი ნიგვზით</div><div class="item-en">Eggplant with walnut</div></div><div class="item-pr"><span class="price">12</span><span class="cur">₾</span></div></div>
+      <div class="menu-item lang-ka" data-geo="ბადრიჯანი მწვანილებით" data-en="Eggplant salad with herbs"><div class="item-text"><div class="item-geo">ბადრიჯანი მწვანილებით</div><div class="item-en">Eggplant salad with herbs</div></div><div class="item-pr"><span class="price">8</span><span class="cur">₾</span></div></div>
+      <div class="menu-item lang-ka" data-geo="ქათმის სალათი" data-en="Chicken salad"><div class="item-text"><div class="item-geo">ქათმის სალათი</div><div class="item-en">Chicken salad</div></div><div class="item-pr"><span class="price">8</span><span class="cur">₾</span></div></div>
+      <div class="menu-item lang-ka" data-geo="კარტოფილი ფრი" data-en="Potatoes fries"><div class="item-text"><div class="item-geo">კარტოფილი ფრი</div><div class="item-en">Potatoes fries</div></div><div class="item-pr"><span class="price">7</span><span class="cur">₾</span></div></div>
+      <div class="menu-item lang-ka" data-geo="კარტოფილი მექსიკურად" data-en="Mexican style potatoes"><div class="item-text"><div class="item-geo">კარტოფილი მექსიკურად</div><div class="item-en">Mexican style potatoes</div></div><div class="item-pr"><span class="price">10</span><span class="cur">₾</span></div></div>
+      <div class="menu-item lang-ka" data-geo="სალათი ცეზარი" data-en="Caesar salad"><div class="item-text"><div class="item-geo">სალათი ცეზარი</div><div class="item-en">Caesar salad</div></div><div class="item-pr"><span class="price">14</span><span class="cur">₾</span></div></div>
+      <div class="menu-item lang-ka" data-geo="ისპანახის სალათი ნიგვზით" data-en="Spinach salad with walnuts"><div class="item-text"><div class="item-geo">ისპანახის სალათი ნიგვზით</div><div class="item-en">Spinach salad with walnuts</div></div><div class="item-pr"><span class="price">10</span><span class="cur">₾</span></div></div>
+      <div class="menu-item lang-ka" data-geo="მწნილის ასორტი" data-en="Pickled vegetables"><div class="item-text"><div class="item-geo">მწნილის ასორტი</div><div class="item-en">Pickled vegetables</div></div><div class="item-pr"><span class="price">7</span><span class="cur">₾</span></div></div>
+      <div class="menu-item lang-ka" data-geo="მწვანილის ასორტი" data-en="Herb assortment"><div class="item-text"><div class="item-geo">მწვანილის ასორტი</div><div class="item-en">Herb assortment</div></div><div class="item-pr"><span class="price">7</span><span class="cur">₾</span></div></div>
+    </div>
+    <div class="no-results" id="nr-salads"><div class="no-results-icon">🔍</div><p>No dishes found</p></div>
+  </section>
+
+  <!-- CHEESE & BREAD -->
+  <section class="menu-section" id="cheese">
+    <div class="sec-hd"><div class="sec-icon" aria-hidden="true"><svg class="sec-icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 18V8l8 6L3 18z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/><circle cx="6.5" cy="12.5" r="1" fill="currentColor"/><circle cx="8.5" cy="14.5" r="0.75" fill="currentColor"/><ellipse cx="17" cy="13.5" rx="4.2" ry="5.2" stroke="currentColor" stroke-width="1.75"/><path d="M13.5 9h7" stroke="currentColor" stroke-width="1.65" stroke-linecap="round"/></svg></div><div><div class="sec-title" id="title-cheese">CHEESE, BREAD & KHACHAPURI</div></div></div>
+    <div class="sec-rule"></div>
+    <div id="g-cheese">
+      <div class="menu-item lang-ka" data-geo="იმერული ყველი" data-en="Imeretian cheese"><div class="item-text"><div class="item-geo">იმერული ყველი</div><div class="item-en">Imeretian cheese</div></div><div class="item-pr"><span class="price">10</span><span class="cur">₾</span></div></div>
+      <div class="menu-item lang-ka" data-geo="ყველის ასორტი" data-en="Assorted cheese"><div class="item-text"><div class="item-geo">ყველის ასორტი</div><div class="item-en">Assorted cheese</div></div><div class="item-pr"><span class="price">15</span><span class="cur">₾</span></div></div>
+      <div class="menu-item lang-ka" data-geo="მჭადი" data-en="Mchadi (Georgian cornbread)"><div class="item-text"><div class="item-geo">მჭადი</div><div class="item-en">Mchadi (Georgian cornbread)</div></div><div class="item-pr"><span class="price">2</span><span class="cur">₾</span></div></div>
+      <div class="menu-item lang-ka" data-geo="ჭვისტარი" data-en="Chvishtari (cornbread with cheese)"><div class="item-text"><div class="item-geo">ჭვისტარი</div><div class="item-en">Chvishtari (cornbread with cheese)</div></div><div class="item-pr"><span class="price">5</span><span class="cur">₾</span></div></div>
+      <div class="menu-item lang-ka" data-geo="იმერული ხაჭაპური" data-en="Imeretian khachapuri"><div class="item-text"><div class="item-geo">იმერული ხაჭაპური</div><div class="item-en">Imeretian khachapuri</div></div><div class="item-pr"><span class="price">14</span><span class="cur">₾</span></div></div>
+      <div class="menu-item lang-ka" data-geo="ხაჭაპური შამფურზე" data-en="Grilled khachapuri"><div class="item-text"><div class="item-geo">ხაჭაპური შამფურზე</div><div class="item-en">Grilled khachapuri</div></div><div class="item-pr"><span class="price">17</span><span class="cur">₾</span></div></div>
+      <div class="menu-item lang-ka" data-geo="ლობიანი ხაჭაპური" data-en="Bean khachapuri"><div class="item-text"><div class="item-geo">ლობიანი ხაჭაპური</div><div class="item-en">Bean khachapuri</div></div><div class="item-pr"><span class="price">13</span><span class="cur">₾</span></div></div>
+      <div class="menu-item lang-ka" data-geo="ჭახრაკინა" data-en="Herb khachapuri"><div class="item-text"><div class="item-geo">ჭახრაკინა</div><div class="item-en">Herb khachapuri</div></div><div class="item-pr"><span class="price">15</span><span class="cur">₾</span></div></div>
+    </div>
+    <div class="no-results" id="nr-cheese"><div class="no-results-icon">🔍</div><p>No dishes found</p></div>
+  </section>
+
+  <!-- MAINS -->
+  <section class="menu-section" id="mains">
+    <div class="sec-hd"><div class="sec-icon" aria-hidden="true"><svg class="sec-icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 3v18M6 3v4M8 3v4M10 3v4M8 8v13" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/><path d="M14 4v17M14 4l6 7-6 7" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="sec-title" id="title-mains">MAIN DISHES</div></div></div>
+    <div class="sec-rule"></div>
+    <div id="g-mains">
+      <div class="menu-item lang-ka" data-geo="საქონლის ჩაშუშული ოსტრი" data-en="Ostri (spicy beef stew)"><div class="item-text"><div class="item-geo">საქონლის ჩაშუშული / ოსტრი</div><div class="item-en">Ostri (spicy beef stew)</div></div><div class="item-pr"><span class="price">14</span><span class="cur">₾</span></div></div>
+      <div class="menu-item lang-ka" data-geo="ხბოს ჩაქაფული" data-en="Veal chakapuli"><div class="item-text"><div class="item-geo">ხბოს ჩაქაფული</div><div class="item-en">Veal chakapuli</div></div><div class="item-pr"><span class="price">18</span><span class="cur">₾</span></div></div>
+      <div class="menu-item lang-ka" data-geo="ხაშლამა" data-en="Khashlama (slow-cooked beef)"><div class="item-text"><div class="item-geo">ხაშლამა</div><div class="item-en">Khashlama (slow-cooked beef)</div></div><div class="item-pr"><span class="price">40</span><span class="cur">₾</span></div></div>
+      <div class="menu-item lang-ka" data-geo="საქონლის ენა" data-en="Boiled beef tongue"><div class="item-text"><div class="item-geo">საქონლის ენა</div><div class="item-en">Boiled beef tongue</div></div><div class="item-pr"><span class="price">15</span><span class="cur">₾</span></div></div>
+      <div class="menu-item lang-ka" data-geo="გულ-ღვიძლი კეცზე" data-en="Heart and liver on ketsi"><div class="item-text"><div class="item-geo">გულ-ღვიძლი კეცზე</div><div class="item-en">Heart and liver on ketsi</div></div><div class="item-pr"><span class="price">12</span><span class="cur">₾</span></div></div>
+      <div class="menu-item lang-ka" data-geo="ღორის კანჭი ნიორწყლით" data-en="Pork knuckle with garlic sauce"><div class="item-text"><div class="item-geo">ღორის კანჭი ნიორწყლით</div><div class="item-en">Pork knuckle with garlic sauce</div></div><div class="item-pr"><span class="price">12</span><span class="cur">₾</span></div></div>
+      <div class="menu-item lang-ka" data-geo="კატლეტი გარნირით" data-en="Cutlet with garnish"><div class="item-text"><div class="item-geo">კატლეტი გარნირით</div><div class="item-en">Cutlet with garnish</div></div><div class="item-pr"><span class="price">14</span><span class="cur">₾</span></div></div>
+      <div class="menu-item lang-ka" data-geo="შემწვარი წიწილა სოფლის" data-en="Fried village chicken"><div class="item-text"><div class="item-geo">შემწვარი წიწილა (სოფლის)</div><div class="item-en">Fried village chicken</div></div><div class="item-pr"><span class="price">28</span><span class="cur">₾</span></div></div>
+      <div class="menu-item lang-ka" data-geo="შემწვარი ქათამი ფერმის" data-en="Fried farm chicken"><div class="item-text"><div class="item-geo">შემწვარი ქათამი (ფერმის)</div><div class="item-en">Fried farm chicken</div></div><div class="item-pr"><span class="price">15</span><span class="cur">₾</span></div></div>
+      <div class="menu-item lang-ka" data-geo="შქმერული სოფლის წიწილით" data-en="Shkmeruli (village chicken)"><div class="item-text"><div class="item-geo">შქმერული სოფლის წიწილით</div><div class="item-en">Shkmeruli (village chicken)</div></div><div class="item-pr"><span class="price">30</span><span class="cur">₾</span></div></div>
+      <div class="menu-item lang-ka" data-geo="შქმერული ფერმის ქათმით" data-en="Shkmeruli (farm chicken)"><div class="item-text"><div class="item-geo">შქმერული ფერმის ქათმით</div><div class="item-en">Shkmeruli (farm chicken)</div></div><div class="item-pr"><span class="price">16</span><span class="cur">₾</span></div></div>
+      <div class="menu-item lang-ka" data-geo="მოხარშული დედალი სოფლის" data-en="Boiled village chicken"><div class="item-text"><div class="item-geo">მოხარშული დედალი სოფლის</div><div class="item-en">Boiled village chicken</div></div><div class="item-pr"><span class="price">60</span><span class="cur">₾</span></div></div>
+    </div>
+    <div class="no-results" id="nr-mains"><div class="no-results-icon">🔍</div><p>No dishes found</p></div>
+  </section>
+
+  <!-- GRILL -->
+  <section class="menu-section" id="grill">
+    <div class="sec-hd"><div class="sec-icon" aria-hidden="true"><svg class="sec-icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="6" width="16" height="10" rx="2" stroke="currentColor" stroke-width="1.75"/><path d="M7 9h10M7 11.5h10M7 14h10" stroke="currentColor" stroke-width="1.65"/><path d="M12 21c3-2 6-6 6-11 0-4-2.5-8-6-12C8 6 6 10 6 14c0 5 3 9 6 7z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/></svg></div><div><div class="sec-title" id="title-grill">GRILL & FISH</div></div></div>
+    <div class="sec-rule"></div>
+    <div id="g-grill">
+      <div class="menu-item lang-ka" data-geo="ოჯახური" data-en="Ojakhuri (fried potatoes and meat)"><div class="item-text"><div class="item-geo">ოჯახური</div><div class="item-en">Ojakhuri (fried potatoes and meat)</div></div><div class="item-pr"><span class="price">16</span><span class="cur">₾</span></div></div>
+      <div class="menu-item lang-ka" data-geo="ქამა სოკო კეცზე" data-en="Roasted champignon mushrooms on ketsi"><div class="item-text"><div class="item-geo">ქამა სოკო კეცზე</div><div class="item-en">Roasted champignon mushrooms on ketsi</div></div><div class="item-pr"><span class="price">10</span><span class="cur">₾</span></div></div>
+      <div class="menu-item lang-ka" data-geo="სოკოს ჩაშუშული" data-en="Stewed mushrooms"><div class="item-text"><div class="item-geo">სოკოს ჩაშუშული</div><div class="item-en">Stewed mushrooms</div></div><div class="item-pr"><span class="price">12</span><span class="cur">₾</span></div></div>
+      <div class="menu-item lang-ka" data-geo="კალმახი შამფურზე" data-en="Grilled trout"><div class="item-text"><div class="item-geo">კალმახი შამფურზე</div><div class="item-en">Grilled trout</div></div><div class="item-pr"><span class="price">12</span><span class="cur">₾</span></div></div>
+      <div class="menu-item lang-ka" data-geo="ორაგული 500გ" data-en="Boiled salmon (500g)"><div class="item-text"><div class="item-geo">ორაგული 500გ.</div><div class="item-en">Boiled salmon (500g)</div></div><div class="item-pr"><span class="price">18</span><span class="cur">₾</span></div></div>
+      <div class="menu-item lang-ka" data-geo="ქაბაბი შამფურზე" data-en="Grilled kebab"><div class="item-text"><div class="item-geo">ქაბაბი შამფურზე</div><div class="item-en">Grilled kebab</div></div><div class="item-pr"><span class="price">11</span><span class="cur">₾</span></div></div>
+      <div class="menu-item lang-ka" data-geo="ღორის მწვადი მაყალზე" data-en="Pork barbecue on charcoal"><div class="item-text"><div class="item-geo">ღორის მწვადი მაყალზე</div><div class="item-en">Pork barbecue on charcoal</div></div><div class="item-pr"><span class="price">14</span><span class="cur">₾</span></div></div>
+      <div class="menu-item lang-ka" data-geo="ხბოს მწვადი კეცზე" data-en="Veal barbecue on ketsi"><div class="item-text"><div class="item-geo">ხბოს მწვადი კეცზე</div><div class="item-en">Veal barbecue on ketsi</div></div><div class="item-pr"><span class="price">19</span><span class="cur">₾</span></div></div>
+      <div class="menu-item lang-ka" data-geo="ქათმის მწვადი" data-en="Chicken barbecue"><div class="item-text"><div class="item-geo">ქათმის მწვადი</div><div class="item-en">Chicken barbecue</div></div><div class="item-pr"><span class="price">14</span><span class="cur">₾</span></div></div>
+      <div class="menu-item lang-ka" data-geo="ღვიძლი ბადექონში" data-en="Fried liver in bacon"><div class="item-text"><div class="item-geo">ღვიძლი ბადექონში</div><div class="item-en">Fried liver in bacon</div></div><div class="item-pr"><span class="price">13</span><span class="cur">₾</span></div></div>
+      <div class="menu-item lang-ka" data-geo="ხბოს ნეკნი აჯიკით" data-en="Veal ribs with adjika"><div class="item-text"><div class="item-geo">ხბოს ნეკნი აჯიკით</div><div class="item-en">Veal ribs with adjika</div></div><div class="item-pr"><span class="price">22</span><span class="cur">₾</span></div></div>
+    </div>
+    <div class="no-results" id="nr-grill"><div class="no-results-icon">🔍</div><p>No dishes found</p></div>
+  </section>
+
+  <!-- SAUCES -->
+  <section class="menu-section" id="sauces">
+    <div class="sec-hd"><div class="sec-icon" aria-hidden="true"><svg class="sec-icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="9" y="3" width="6" height="18" rx="2.5" stroke="currentColor" stroke-width="1.75"/><circle cx="12" cy="7" r="1.1" fill="currentColor"/><circle cx="12" cy="11" r="1.1" fill="currentColor"/><path d="M12 21v2" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg></div><div><div class="sec-title" id="title-sauces">SAUCES & EXTRAS</div></div></div>
+    <div class="sec-rule"></div>
+    <div id="g-sauces">
+      <div class="menu-item lang-ka" data-geo="საწებელი" data-en="Tomato sauce"><div class="item-text"><div class="item-geo">საწებელი</div><div class="item-en">Tomato sauce</div></div><div class="item-pr"><span class="price">3</span><span class="cur">₾</span></div></div>
+      <div class="menu-item lang-ka" data-geo="ტყემალი" data-en="Tkemali (Georgian plum sauce)"><div class="item-text"><div class="item-geo">ტყემალი</div><div class="item-en">Tkemali (Georgian plum sauce)</div></div><div class="item-pr"><span class="price">3</span><span class="cur">₾</span></div></div>
+      <div class="menu-item lang-ka" data-geo="ბაჟე" data-en="Baji (walnut sauce)"><div class="item-text"><div class="item-geo">ბაჟე</div><div class="item-en">Baji (walnut sauce)</div></div><div class="item-pr"><span class="price">6</span><span class="cur">₾</span></div></div>
+      <div class="menu-item lang-ka" data-geo="პური" data-en="Bread"><div class="item-text"><div class="item-geo">პური</div><div class="item-en">Bread</div></div><div class="item-pr"><span class="price">2</span><span class="cur">₾</span></div></div>
+    </div>
+    <div class="no-results" id="nr-sauces"><div class="no-results-icon">🔍</div><p>No dishes found</p></div>
+  </section>
+
+  <!-- DRINKS -->
+  <section class="menu-section" id="drinks">
+    <div class="sec-hd"><div class="sec-icon" aria-hidden="true"><svg class="sec-icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 10h11v7a4 4 0 0 1-4 4h-3a4 4 0 0 1-4-4v-7z" stroke="currentColor" stroke-width="1.75"/><path d="M17 12h2a3.5 3.5 0 0 1 3.5 3.5V18" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/><path d="M6 13h11" stroke="currentColor" stroke-width="1.65"/><path d="M9 10V8a3 3 0 0 1 3-3 3 3 0 0 1 3 3v2" stroke="currentColor" stroke-width="1.75"/></svg></div><div><div class="sec-title" id="title-drinks">DRINKS</div></div></div>
+    <div class="sec-rule"></div>
+    <div id="g-drinks">
+      <div class="menu-item lang-ka" data-geo="ლიმონათი" data-en="Lemonade"><div class="item-text"><div class="item-geo">ლიმონათი</div><div class="item-en">Lemonade</div></div><div class="item-pr"><span class="price">4</span><span class="cur">₾</span></div></div>
+      <div class="menu-item lang-ka" data-geo="სახლური ლიმონათი (1 ლიტრი)" data-en="Homemade lemonade (1 litre)"><div class="item-text"><div class="item-geo">სახლური ლიმონათი (1 ლიტრი)</div><div class="item-en">Homemade lemonade (1 litre)</div></div><div class="item-pr"><span class="price">15</span><span class="cur">₾</span></div></div>
+      <div class="menu-item lang-ka" data-geo="მინერალური გაზიანი წყალი" data-en="Mineral sparkling water"><div class="item-text"><div class="item-geo">მინერალური გაზიანი წყალი</div><div class="item-en">Mineral sparkling water</div></div><div class="item-pr"><span class="price">3</span><span class="cur">₾</span></div></div>
+      <div class="menu-item lang-ka" data-geo="წყალი" data-en="Still water"><div class="item-text"><div class="item-geo">წყალი</div><div class="item-en">Still water</div></div><div class="item-pr"><span class="price">2</span><span class="cur">₾</span></div></div>
+      <div class="menu-item lang-ka" data-geo="სახლის კომპოტი (1 ლიტრი)" data-en="Home compote (1 litre)"><div class="item-text"><div class="item-geo">სახლის კომპოტი (1 ლიტრი)</div><div class="item-en">Home compote (1 litre)</div></div><div class="item-pr"><span class="price">10</span><span class="cur">₾</span></div></div>
+      <div class="menu-item lang-ka" data-geo="ყავა თურქული" data-en="Turkish coffee"><div class="item-text"><div class="item-geo">ყავა თურქული</div><div class="item-en">Turkish coffee</div></div><div class="item-pr"><span class="price">3.50</span><span class="cur">₾</span></div></div>
+      <div class="menu-item lang-ka" data-geo="ხსნადი ყავა" data-en="Instant coffee"><div class="item-text"><div class="item-geo">ხსნადი ყავა</div><div class="item-en">Instant coffee</div></div><div class="item-pr"><span class="price">3.50</span><span class="cur">₾</span></div></div>
+    </div>
+    <div class="no-results" id="nr-drinks"><div class="no-results-icon">🔍</div><p>No dishes found</p></div>
+  </section>
+
+</div>
+
+<footer id="contact">
+  <div class="ft-geo" id="footerGeo">რესტორანი „ატენი"</div>
+  <div class="ft-rule"></div>
+  <div class="ft-en" id="footerEn">Georgian cuisine · Heartfelt hospitality</div>
+</footer>
+
+<div class="contact-modal" id="contactModal" onclick="if(event.target===this) closeContactModal()">
+  <div class="contact-modal-card">
+    <div class="contact-modal-head">
+      <div class="contact-modal-title" id="contactModalTitle">Contact</div>
+      <button class="contact-modal-close" onclick="closeContactModal()" aria-label="Close contact popup">×</button>
+    </div>
+    <div class="contact-modal-body">
+      <div class="contact-grid">
+        <div class="contact-item">
+          <span class="contact-label" id="contactPhoneLabel"><span class="contact-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.8 4.8h3.1l1.2 4-2 1.4a12.1 12.1 0 0 0 4.7 4.7l1.4-2 4 1.2v3.1c0 .8-.6 1.4-1.4 1.4C10.8 18.6 5.4 13.2 5.4 6.2c0-.8.6-1.4 1.4-1.4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span>Phone</span>
+          <a class="contact-link" id="contactPhoneLink" href="tel:+995591007522">+995 591 007 522</a>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label" id="contactFbLabel"><span class="contact-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M13.4 20v-7h2.4l.4-2.8h-2.8V8.4c0-.8.2-1.4 1.4-1.4h1.5V4.5c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v1.8H8v2.8h2.1v7h3.3Z" fill="currentColor"/></svg></span>Facebook</span>
+          <a class="contact-link" id="contactFbLink" href="https://www.facebook.com/share/14bxN6ULwen/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">Facebook Page</a>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label" id="contactWaLabel"><span class="contact-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5a7 7 0 0 0-6 10.6L5 19l3.5-1A7 7 0 1 0 12 5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9.4 10.1c.2-.4.4-.4.7-.4h.6c.2 0 .4 0 .5.4l.5 1.2c.1.2 0 .4-.1.5l-.4.5c.3.7 1 1.3 1.7 1.7l.5-.4c.2-.1.3-.2.5-.1l1.2.5c.4.1.4.3.4.5v.6c0 .3 0 .5-.4.7-.4.2-1.1.3-2.1-.1-1.1-.5-2.1-1.4-2.8-2.3-.7-.9-1.2-2-.8-2.5Z" fill="currentColor"/></svg></span>WhatsApp</span>
+          <a class="contact-link" id="contactWaLink" href="https://wa.me/995591007522" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dish-modal" id="dishModal" onclick="if(event.target===this) closeDishModal()">
+  <div class="dish-modal-card">
+    <div class="dish-modal-head">
+      <div class="dish-modal-title" id="dishModalTitle">Dish photo</div>
+      <button class="dish-modal-close" onclick="closeDishModal()" aria-label="Close photo popup">×</button>
+    </div>
+    <div class="dish-modal-image-wrap">
+      <div class="dish-modal-empty" id="dishModalEmpty">No photo added yet for this dish.</div>
+      <img class="dish-modal-image" id="dishModalImage" alt="Dish photo" style="display:none;">
+    </div>
+  </div>
+</div>
+
+<script>
+const SECTIONS = ['salads','cheese','mains','grill','sauces','drinks'];
+let currentSection = 'salads';
+let currentLang = 'ka';
+const GENERAL_IMAGE_STYLE = 'georgian food,restaurant dish';
+
+function showSection(id, btn) {
+  document.getElementById(currentSection).classList.remove('active');
+  document.getElementById(id).classList.add('active');
+  currentSection = id;
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+}
+
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.menu-item').forEach(el => {
+    el.classList.remove('lang-ka','lang-geo','lang-en');
+    el.classList.add(lang === 'ka' ? 'lang-geo' : 'lang-en');
+  });
+  document.getElementById('btnKaTab').classList.toggle('active', lang === 'ka');
+  document.getElementById('btnEnTab').classList.toggle('active', lang === 'en');
+  applyTranslations(lang);
+}
+
+function setTabLabel(tabId, icon, label) {
+  const el = document.getElementById(tabId);
+  if (!el) return;
+  el.innerHTML = `<span class="ti">${icon}</span>${label}`;
+}
+
+function applyTranslations(lang) {
+  const isKa = lang === 'ka';
+  document.documentElement.lang = isKa ? 'ka' : 'en';
+  document.title = isKa ? 'რესტორანი „ატენი"' : 'Restaurant "Ateni"';
+
+  document.getElementById('heroSub').textContent = isKa
+    ? 'ქართული სამზარეულო'
+    : 'Georgian Cuisine';
+  document.getElementById('heroTitleMain').textContent = isKa ? 'რესტორანი' : 'Restaurant';
+  document.getElementById('heroTitleEm').textContent = isKa ? 'ატენი' : 'Ateni';
+  document.getElementById('heroTag').textContent = isKa
+    ? 'ტრადიციული გემოები · გულითადი მასპინძლობა'
+    : 'Traditional flavours · Heartfelt hospitality';
+
+  document.getElementById('btnKaTab').innerHTML = '<img class="flag" src="https://flagcdn.com/ge.svg" alt="Georgian flag">';
+  document.getElementById('btnEnTab').innerHTML = '<img class="flag" src="https://flagcdn.com/gb.svg" alt="English flag">';
+
+  setTabLabel('tab-salads', '✦', isKa ? 'სალათები და საწყისი კერძები' : 'Salads & Starters');
+  setTabLabel('tab-cheese', '✦', isKa ? 'ყველი და ცომეული' : 'Cheese & Bread');
+  setTabLabel('tab-mains', '✦', isKa ? 'მთავარი კერძები' : 'Main Dishes');
+  setTabLabel('tab-grill', '✦', isKa ? 'გრილი და თევზი' : 'Grill & Fish');
+  setTabLabel('tab-sauces', '✦', isKa ? 'სოუსები' : 'Sauces');
+  setTabLabel('tab-drinks', '✦', isKa ? 'სასმელები' : 'Drinks');
+  document.getElementById('btnContact').textContent = isKa ? 'კონტაქტი' : 'Contact';
+  document.getElementById('contactModalTitle').textContent = isKa ? 'კონტაქტი' : 'Contact';
+
+  document.getElementById('title-salads').textContent = isKa ? 'სალათები და საწყისი კერძები' : 'SALADS & STARTERS';
+  const subSalads = document.getElementById('sub-salads');
+  if (subSalads) subSalads.textContent = isKa ? 'სალათები და საწყისი კერძები' : 'Fresh and light starters';
+  document.getElementById('title-cheese').textContent = isKa ? 'ყველი და ცომეული' : 'CHEESE, BREAD & KHACHAPURI';
+  const subCheese = document.getElementById('sub-cheese');
+  if (subCheese) subCheese.textContent = isKa ? 'ყველი და ცომეული' : 'Traditional baked specialties';
+  document.getElementById('title-mains').textContent = isKa ? 'მთავარი კერძები' : 'MAIN DISHES';
+  const subMains = document.getElementById('sub-mains');
+  if (subMains) subMains.textContent = isKa ? 'მთავარი კერძები' : 'Hearty Georgian classics';
+  document.getElementById('title-grill').textContent = isKa ? 'გრილი და თევზი' : 'GRILL & FISH';
+  const subGrill = document.getElementById('sub-grill');
+  if (subGrill) subGrill.textContent = isKa ? 'გრილი და თევზი' : 'Charcoal and seafood selection';
+  document.getElementById('title-sauces').textContent = isKa ? 'სოუსები და დამატებები' : 'SAUCES & EXTRAS';
+  const subSauces = document.getElementById('sub-sauces');
+  if (subSauces) subSauces.textContent = isKa ? 'სოუსები და დამატებები' : 'Side sauces and essentials';
+  document.getElementById('title-drinks').textContent = isKa ? 'სასმელები' : 'DRINKS';
+  const subDrinks = document.getElementById('sub-drinks');
+  if (subDrinks) subDrinks.textContent = isKa ? 'სასმელები' : 'Hot and cold beverages';
+
+  document.querySelectorAll('.no-results p').forEach(p => {
+    p.textContent = isKa ? 'კერძი ვერ მოიძებნა' : 'No dishes found';
+  });
+
+  document.getElementById('footerGeo').textContent = isKa ? 'რესტორანი „ატენი"' : 'Restaurant "Ateni"';
+  document.getElementById('footerEn').textContent = isKa
+    ? 'ქართული სამზარეულო · გულითადი მასპინძლობა'
+    : 'Georgian cuisine · Heartfelt hospitality';
+  document.getElementById('contactPhoneLabel').innerHTML = `<span class="contact-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.8 4.8h3.1l1.2 4-2 1.4a12.1 12.1 0 0 0 4.7 4.7l1.4-2 4 1.2v3.1c0 .8-.6 1.4-1.4 1.4C10.8 18.6 5.4 13.2 5.4 6.2c0-.8.6-1.4 1.4-1.4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span>${isKa ? 'ტელეფონი' : 'Phone'}`;
+  document.getElementById('contactFbLabel').innerHTML = '<span class="contact-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M13.4 20v-7h2.4l.4-2.8h-2.8V8.4c0-.8.2-1.4 1.4-1.4h1.5V4.5c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v1.8H8v2.8h2.1v7h3.3Z" fill="currentColor"/></svg></span>Facebook';
+  document.getElementById('contactWaLabel').innerHTML = '<span class="contact-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5a7 7 0 0 0-6 10.6L5 19l3.5-1A7 7 0 1 0 12 5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9.4 10.1c.2-.4.4-.4.7-.4h.6c.2 0 .4 0 .5.4l.5 1.2c.1.2 0 .4-.1.5l-.4.5c.3.7 1 1.3 1.7 1.7l.5-.4c.2-.1.3-.2.5-.1l1.2.5c.4.1.4.3.4.5v.6c0 .3 0 .5-.4.7-.4.2-1.1.3-2.1-.1-1.1-.5-2.1-1.4-2.8-2.3-.7-.9-1.2-2-.8-2.5Z" fill="currentColor"/></svg></span>WhatsApp';
+  document.getElementById('contactWaLink').textContent = isKa ? 'WhatsApp-ზე მოგვწერეთ' : 'Chat on WhatsApp';
+}
+
+function openDishModal(item) {
+  const modal = document.getElementById('dishModal');
+  const title = document.getElementById('dishModalTitle');
+  const img = document.getElementById('dishModalImage');
+  const empty = document.getElementById('dishModalEmpty');
+  const name = currentLang === 'ka' ? item.dataset.geo : item.dataset.en;
+  const imgSrc = item.dataset.img || '';
+  const fallbackSrc = item.dataset.fallbackImg || '';
+
+  title.textContent = name;
+  if (imgSrc) {
+    img.onload = null;
+    img.onerror = null;
+    img.dataset.triedFallback = '0';
+    img.onerror = () => {
+      if (img.dataset.triedFallback === '0' && fallbackSrc) {
+        img.dataset.triedFallback = '1';
+        img.src = fallbackSrc;
+        return;
+      }
+      img.removeAttribute('src');
+      img.style.display = 'none';
+      empty.textContent = currentLang === 'ka'
+        ? 'ამ კერძისთვის ფოტო ვერ ჩაიტვირთა.'
+        : 'Could not load photo for this dish.';
+      empty.style.display = 'block';
+    };
+    img.src = imgSrc;
+    img.style.display = 'block';
+    empty.style.display = 'none';
+  } else {
+    img.removeAttribute('src');
+    img.style.display = 'none';
+    empty.textContent = currentLang === 'ka'
+      ? 'ამ კერძისთვის ფოტო ჯერ დამატებული არ არის.'
+      : 'No photo added yet for this dish.';
+    empty.style.display = 'block';
+  }
+  modal.classList.add('show');
+}
+
+function closeDishModal() {
+  document.getElementById('dishModal').classList.remove('show');
+}
+
+function openContactModal() {
+  document.getElementById('contactModal').classList.add('show');
+}
+
+function closeContactModal() {
+  document.getElementById('contactModal').classList.remove('show');
+}
+
+function initPhotoButtons() {
+  document.querySelectorAll('.menu-item').forEach(item => {
+    if (item.closest('#g-drinks')) return;
+    if (item.querySelector('.photo-btn')) return;
+    const btn = document.createElement('button');
+    btn.className = 'photo-btn';
+    btn.type = 'button';
+    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="6" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.8"/><circle cx="9" cy="10" r="1.4" fill="currentColor"/><path d="M6.8 16 11 12.5l2.4 2 2.2-1.7L18 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    btn.title = 'Dish photo';
+    btn.setAttribute('aria-label', 'Open dish photo');
+    btn.onclick = () => openDishModal(item);
+    const priceWrap = item.querySelector('.item-pr');
+    if (priceWrap) priceWrap.appendChild(btn);
+  });
+}
+
+function applyGeneralDishImages() {
+  document.querySelectorAll('.menu-item').forEach((item, idx) => {
+    if (item.closest('#g-drinks')) return;
+    if (item.dataset.img) return;
+    const dishName = (item.dataset.en || item.dataset.geo || 'georgian dish')
+      .toLowerCase()
+      .replace(/[^a-z0-9\s-]/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+    const dishTags = dishName.replace(/\s+/g, ',');
+    const styleTags = GENERAL_IMAGE_STYLE.replace(/\s*,\s*/g, ',').replace(/\s+/g, ',');
+    // Primary source: keyword-based food photo.
+    item.dataset.img = `https://loremflickr.com/960/640/${dishTags},${styleTags}?lock=${idx + 1201}`;
+    // Fallback source: deterministic seeded image if primary fails.
+    item.dataset.fallbackImg = `https://picsum.photos/seed/dish-${idx + 1201}/960/640`;
+  });
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    closeDishModal();
+    closeContactModal();
+  }
+});
+
+initPhotoButtons();
+setLang('ka');
+</script>
+</body>
+</html>
