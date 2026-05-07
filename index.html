@@ -246,8 +246,8 @@ footer{background:var(--forest-dk);text-align:center;padding:30px 20px;margin-to
     <button class="tab-btn" id="tab-cheese" onclick="showSection('cheese',this)"><span class="ti">✦</span>Cheese & Bread</button>
     <button class="tab-btn" id="tab-mains" onclick="showSection('mains',this)"><span class="ti">✦</span>Main Dishes</button>
     <button class="tab-btn" id="tab-grill" onclick="showSection('grill',this)"><span class="ti">✦</span>Grill & Fish</button>
-    <button class="tab-btn" id="tab-sauces" onclick="showSection('sauces',this)"><span class="ti">✦</span>Sauces</button>
-    <button class="tab-btn" id="tab-drinks" onclick="showSection('drinks',this)"><span class="ti">✦</span>Drinks</button>
+    <button class="tab-btn" id="tab-sauces" onclick="showSection('sauces',this)"><span class="ti">✦</span>Sauces & Extras</button>
+    <button class="tab-btn" id="tab-drinks" onclick="showSection('drinks',this)"><span class="ti">✦</span>Drinks & Fruit</button>
   </div>
 </div>
 
@@ -460,8 +460,8 @@ function applyTranslations(lang) {
   setTabLabel('tab-cheese', '✦', isKa ? 'ყველი და ცომეული' : 'Cheese & Bread');
   setTabLabel('tab-mains', '✦', isKa ? 'მთავარი კერძები' : 'Main Dishes');
   setTabLabel('tab-grill', '✦', isKa ? 'გრილი და თევზი' : 'Grill & Fish');
-  setTabLabel('tab-sauces', '✦', isKa ? 'სოუსები' : 'Sauces');
-  setTabLabel('tab-drinks', '✦', isKa ? 'სასმელები და ხილი' : 'Drinks');
+  setTabLabel('tab-sauces', '✦', isKa ? 'სოუსები და დამატებები' : 'Sauces & Extras');
+  setTabLabel('tab-drinks', '✦', isKa ? 'სასმელები და ხილი' : 'Drinks & Fruit');
   document.getElementById('btnContact').textContent = isKa ? 'კონტაქტი' : 'Contact';
   document.getElementById('contactModalTitle').textContent = isKa ? 'კონტაქტი' : 'Contact';
 
