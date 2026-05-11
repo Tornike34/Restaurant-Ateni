@@ -5,22 +5,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>რესტორანი „ატენი"</title>
 <meta name="description" content="ქართული სამზარეული — ტრადიციული გემოები და სტუმართმოყვარეობა. რესტორანი ატენი — ონლაინ მენიუ.">
+<meta property="og:site_name" content="restoraniateni.ge">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ka_GE">
 <meta property="og:title" content="რესტორანი ატენი">
 <meta property="og:description" content="ქართული სამზარეული — ტრადიციული გემოები და სტუმართმოყვარეობა. ონლაინ მენიუ.">
-<meta property="og:url" content="https://tornike34.github.io/Restaurant-Ateni/">
-<link rel="canonical" href="https://tornike34.github.io/Restaurant-Ateni/">
-<meta property="og:image" content="https://tornike34.github.io/Restaurant-Ateni/og-share.jpg?v=fb3">
-<meta property="og:image:secure_url" content="https://tornike34.github.io/Restaurant-Ateni/og-share.jpg?v=fb3">
+<meta property="og:url" content="https://restoraniateni.ge/">
+<link rel="canonical" href="https://restoraniateni.ge/">
+<meta property="og:image" content="https://restoraniateni.ge/og-share.jpg?v=fb4">
+<meta property="og:image:secure_url" content="https://restoraniateni.ge/og-share.jpg?v=fb4">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="რესტორანი ატენი — ქართული სამზარეული">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:domain" content="restoraniateni.ge">
+<meta name="twitter:url" content="https://restoraniateni.ge/">
 <meta name="twitter:title" content="რესტორანი ატენი">
 <meta name="twitter:description" content="ქართული სამზარეული — ტრადიციული გემოები და სტუმართმოყვარეობა. ონლაინ მენიუ.">
-<meta name="twitter:image" content="https://tornike34.github.io/Restaurant-Ateni/og-share.jpg?v=fb3">
+<meta name="twitter:image" content="https://restoraniateni.ge/og-share.jpg?v=fb4">
 <meta name="twitter:image:alt" content="რესტორანი ატენი — ქართული სამზარეული">
 <link rel="icon" type="image/x-icon" href="icon.ico">
 <link rel="shortcut icon" href="icon.ico">
@@ -98,12 +101,13 @@ html[lang="ka"] .hero-tag{
 
 /* CONTROLS */
 .lang-toggle{display:flex;gap:6px;border:none;border-radius:999px;overflow:visible;flex-shrink:0;}
-.lang-btn{padding:6px 8px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:1px;color:#f0f6f2;background:#2F5A44;border:none;cursor:pointer;transition:all .25s;min-width:38px;display:flex;align-items:center;justify-content:center;border-radius:999px;backdrop-filter:blur(2px);}
+.lang-btn{padding:5px 6px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:.6px;color:#f0f6f2;background:#2F5A44;border:none;cursor:pointer;transition:all .25s;display:flex;align-items:center;justify-content:center;gap:6px;border-radius:999px;backdrop-filter:blur(2px);}
 .lang-btn:hover{background:#3B6A53;}
-.lang-btn.active{background:#244837;color:#fffdf8;font-weight:600;}
-.lang-btn .lang-abbr{display:block;min-width:22px;text-align:center;font-family:'Cinzel',serif;font-size:10px;letter-spacing:.4px;line-height:1.2;color:inherit;}
-html[lang="ka"] .lang-btn .lang-abbr{font-family:'BPG Irubaqidze','Noto Serif Georgian',serif;font-size:11px;letter-spacing:0;}
-.lang-fixed{position:absolute;top:18px;right:18px;left:auto;bottom:auto;z-index:4;background:rgba(15,26,15,.35);padding:6px 8px;border-radius:999px;border:none;backdrop-filter:blur(4px);}
+.lang-btn.active{background:#244837;color:#fffdf8;font-weight:600;box-shadow:inset 0 0 0 1px rgba(201,168,76,.55);}
+.lang-btn .flag-svg{width:22px;height:14px;display:block;border-radius:2px;box-shadow:0 0 0 1px rgba(255,255,255,.25);overflow:hidden;flex-shrink:0;}
+.lang-btn .lang-abbr{display:block;text-align:center;font-family:'Cinzel',serif;font-size:11px;letter-spacing:.4px;line-height:1;color:inherit;}
+html[lang="ka"] .lang-btn .lang-abbr{font-family:'BPG Irubaqidze','Noto Serif Georgian',serif;font-size:12px;letter-spacing:0;}
+.lang-fixed{position:absolute;top:18px;right:18px;left:auto;bottom:auto;z-index:4;background:rgba(15,26,15,.35);padding:5px 6px;border-radius:999px;border:none;backdrop-filter:blur(4px);}
 
 /* TABS */
 .tabs-wrap{background:var(--parchment);border-bottom:1px solid var(--border);overflow-x:hidden;scrollbar-width:none;transition:opacity .3s;}
@@ -210,8 +214,39 @@ footer{background:var(--forest-dk);text-align:center;padding:30px 20px;margin-to
 <body>
 <header class="hero">
   <div class="lang-toggle lang-fixed">
-    <button class="lang-btn active" id="btnKaTab" onclick="setLang('ka')" aria-label="Georgian language" type="button"><span class="lang-abbr" aria-hidden="true">ქარ</span></button>
-    <button class="lang-btn" id="btnEnTab" onclick="setLang('en')" aria-label="English language" type="button"><span class="lang-abbr" aria-hidden="true">EN</span></button>
+    <button class="lang-btn active" id="btnKaTab" onclick="setLang('ka')" aria-label="Georgian language" type="button">
+      <svg class="flag-svg" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect width="300" height="200" fill="#ffffff"/>
+        <rect x="125" width="50" height="200" fill="#ff0000"/>
+        <rect y="75" width="300" height="50" fill="#ff0000"/>
+        <g fill="#ff0000">
+          <path d="M55 22h15v15h15v18H70v15H55V55H40V37h15z"/>
+          <path d="M230 22h15v15h15v18h-15v15h-15V55h-15V37h15z"/>
+          <path d="M55 145h15v15h15v18H70v15H55v-15H40v-18h15z"/>
+          <path d="M230 145h15v15h15v18h-15v15h-15v-15h-15v-18h15z"/>
+        </g>
+      </svg>
+      <span class="lang-abbr" aria-hidden="true">ქარ</span>
+    </button>
+    <button class="lang-btn" id="btnEnTab" onclick="setLang('en')" aria-label="English language" type="button">
+      <svg class="flag-svg" viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <clipPath id="ukClip"><rect width="60" height="30"/></clipPath>
+        <clipPath id="ukClipDiag">
+          <polygon points="0,0 30,15 60,0 60,30 30,15 0,30"/>
+        </clipPath>
+        <g clip-path="url(#ukClip)">
+          <rect width="60" height="30" fill="#012169"/>
+          <path d="M0,0 L60,30 M60,0 L0,30" stroke="#ffffff" stroke-width="6"/>
+          <g clip-path="url(#ukClipDiag)">
+            <path d="M0,0 L60,30" stroke="#C8102E" stroke-width="3" transform="translate(0,1.5)"/>
+            <path d="M60,0 L0,30" stroke="#C8102E" stroke-width="3" transform="translate(0,-1.5)"/>
+          </g>
+          <path d="M30,0 V30 M0,15 H60" stroke="#ffffff" stroke-width="10"/>
+          <path d="M30,0 V30 M0,15 H60" stroke="#C8102E" stroke-width="6"/>
+        </g>
+      </svg>
+      <span class="lang-abbr" aria-hidden="true">EN</span>
+    </button>
   </div>
   <!-- decorative botanical corners via SVG -->
   <svg class="corner tl" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -472,8 +507,10 @@ function applyTranslations(lang) {
     ? 'ტრადიციული გემოები · გულითადი მასპინძლობა'
     : 'Traditional flavours · Heartfelt hospitality';
 
-  document.getElementById('btnKaTab').innerHTML = '<span class="lang-abbr" aria-hidden="true">ქარ</span>';
-  document.getElementById('btnEnTab').innerHTML = '<span class="lang-abbr" aria-hidden="true">EN</span>';
+  const kaAbbr = document.querySelector('#btnKaTab .lang-abbr');
+  const enAbbr = document.querySelector('#btnEnTab .lang-abbr');
+  if (kaAbbr) kaAbbr.textContent = 'ქარ';
+  if (enAbbr) enAbbr.textContent = 'EN';
 
   setTabLabel('tab-salads', '✦', isKa ? 'სალათები და საწყისი კერძები' : 'Salads & Starters');
   setTabLabel('tab-cheese', '✦', isKa ? 'ყველი და ცომეული' : 'Cheese & Bread');
