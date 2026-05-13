@@ -76,16 +76,12 @@ html[lang="ka"] .ft-en{
     linear-gradient(to bottom, rgba(15,26,15,.65), rgba(15,26,15,.5)),
     radial-gradient(ellipse 80% 60% at 50% 100%,rgba(78,107,78,.35) 0%,transparent 70%),
     url("hero-bg.jpg");
-  background-size:cover, auto, cover;
+  background-size:cover, auto, min(100vw, 390px) min(100vw, 390px);
   background-position:center, center, center 78%;
   background-repeat:no-repeat, no-repeat, no-repeat;
   image-rendering:auto;
   transform:translateZ(0);
   backface-visibility:hidden;
-}
-@media(min-width:768px){
-  .hero{min-height:360px;}
-  .hero-bg{background-position:center, center, center 88%;}
 }
 .corner{position:absolute;width:180px;opacity:.15;pointer-events:none;}
 .corner.tl{top:0;left:0;}.corner.tr{top:0;right:0;transform:scaleX(-1);}.corner.bl{bottom:0;left:0;transform:scaleY(-1);}.corner.br{bottom:0;right:0;transform:rotate(180deg);}
